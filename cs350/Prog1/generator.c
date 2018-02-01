@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/time.h>
+#include <time.h>
 #include "common.c"
 
 int main(int argc, char *argv[], char *envp[])
@@ -27,11 +27,11 @@ int main(int argc, char *argv[], char *envp[])
 	FILE* outputStream = stdout;
 
 	/* parse optargs */
-    int option;
-    while ((option = getopt(argc, argv,"un:m:M:s:o:")) != -1) 
-    {
-	switch (option) 
-	{
+    	int option;
+   	while ((option = getopt(argc, argv,"un:m:M:s:o:")) != -1) 
+    	{
+		switch (option) 
+		{
 		case 'u' : 
 			//usage mode 1 assigned to generator
 			printUsageString(1);
@@ -86,19 +86,18 @@ int main(int argc, char *argv[], char *envp[])
 			printf("uhh something went wrong when opt parsing:( \n");
 			exit(EXIT_FAILURE);
 		}
-    }
+ 	}
 
-    /*
-     * POST INIT INPUT VALIDATION
-     */
-    //Potentially redundant check in case ordering of opts breaks
-    if(boundsMinimum > boundsMaximum)
-    {
-    	perror("Invalid generation bounds: concluded that minimum bound is greater than maximum bound (max < min)");
-    	exit(EXIT_FAILURE);
-    }
+    	/*
+     	* POST INIT INPUT VALIDATION
+     	*/
+   	 //Potentially redundant check in case ordering of opts breaks
+	if(boundsMinimum > boundsMaximum)
+	{
+    	perror("Invalid generation bounds: concluded that minimum bound is greater than maximum bound (max < min)");    	exit(EXIT_FAILURE);
+	}
 
-    /*
+	/*
 	 * GENERATOR EXECUTION
 	 */
 	/* Output total to file line 1, used in sorting */
@@ -113,7 +112,6 @@ int main(int argc, char *argv[], char *envp[])
 		//printf("x: %d\n", rando);
 		fprintf(outputStream,"%d\n", rando);
 		it++;	
-	}	
-
+	}
 	return 0;
 }

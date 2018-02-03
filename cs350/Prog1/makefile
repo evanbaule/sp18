@@ -24,8 +24,8 @@ run:
 
 #Cat | input files to check cases
 test: 
-	./prog1generator -o sample.txt -s 12194194018
-	./prog1sorter -i sample.txt -o sorted.txt -c asciic.txt
+	./prog1generator -n 991192 -o sample.txt -s 12194194018
+	./prog1sorter -n 991192 -i sample.txt -o sorted.txt -c asciic.txt
 
 test2: 
 	./prog1generator -o sample2.txt -s 9945312

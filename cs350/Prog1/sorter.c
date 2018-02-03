@@ -103,6 +103,11 @@ int main(int argc, char *argv[], char *envp[])
     	perror("Invalid generation bounds: concluded that minimum bound is greater than maximum bound (max < min)");
     	exit(EXIT_FAILURE);
     }
+
+    //Starts runtime measurement
+    struct timeval startTime;
+    gettimeofday(&startTime, NULL);
+
     /* Retrieve input from line 1 of -i input file */
 	int inputSize = -1;
 	if(fscanf(inputStream, "%d", &inputSize) != EOF)
@@ -188,7 +193,11 @@ int main(int argc, char *argv[], char *envp[])
 			fprintf(c_outputStream, "%c\t%d\t%d\n", activeUser[it3], (int)activeUser[it3], asciiCounter[it3]);
 		}
 	}
-
+	struct timeval endTime;
+	gettimeofday(&endTime, NULL);
+	float runtime = timeDifference(&startTime, &endTime);
+	//printf("%ld.%06ld\n", usage.ru_stime.tv_sec, usage.ru_stime.tv_usec)
+	fprintf(stderr, "Elapsed Runtime: %.3f\n", runtime);
 	return 0;
 }
 
